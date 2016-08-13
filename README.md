@@ -42,9 +42,9 @@ Below are the confusion matrix, accuracy, AOC, precision, and recall scores for 
 
 For those who may not know, the confusion matrix shows the table of the following:
 
-False positives | False negatives
+True positives | False negatives
 ----------------|----------------
-True positives  | True negatives
+False positives  | True negatives
 
 You can read more about a confusion matrix on [Wikipedia](https://en.wikipedia.org/wiki/Confusion_matrix)
 
