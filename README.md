@@ -34,11 +34,11 @@ The API will then load the loans into a Pandas DataFrame, make some modification
 
 The machine learning model is a Random Forest Classifier trained on all Lending Club loans from 2007-2015. It has the following parameters:
 
-!(http://images.codyhatch.com/github/rfc-model.png)
+![Classifier model parameters](http://images.codyhatch.com/github/rfc-model.png)
 
 Below are the confusion matrix, accuracy, AOC, precision, and recall scores for the model:
 
-!(http://images.codyhatch.com/github/rfc-scoring.png)
+![Classifier model scoring](http://images.codyhatch.com/github/rfc-scoring.png)
 
 For those who may not know, the confusion matrix shows the table of the following:
 
