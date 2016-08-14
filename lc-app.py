@@ -14,6 +14,10 @@ api = Api(app)
 
 parser = reqparse.RequestParser()
 
+# Load the pickled label encoder and Random Forest Classifier
+le = joblib.load("./lc-label-encoder.pkl")
+rfc = joblib.load("./lc-rfc-model.pkl")
+
 class Proba(Resource):
 	def post(self):
 		json_data = request.get_json()
@@ -38,17 +42,15 @@ class Proba(Resource):
 		df2['int_rate'].fillna(df2['int_rate'].mean(), inplace=True)
 		df2['percent_bc_gt_75'].fillna(0, inplace=True)
 		df2['dti'].fillna(df2['dti'].mean(), inplace=True)
-		# Load the pickled label encoder and encode the "term" and "grade" features
+		# Encode the "term" and "grade" features
 		var_mod = ['term','grade']
-		le = joblib.load("./lc-label-encoder.pkl")
 		for i in var_mod:
 		    df2[i] = le.fit_transform(df2[i])
 		# List the features to be used in the prediction
 		predict_cols = ['int_rate','annual_inc','dti','acc_now_delinq','term','grade','last_fico_range_high','last_fico_range_low','num_tl_30dpd','percent_bc_gt_75','tot_cur_bal','tot_hi_cred_lim']
 		# Create X (predictors)
 		X = df2[predict_cols]
-		# Load the RandomForestClassifier predictor and make predictions
-		rfc = joblib.load("./lc-rfc-model.pkl")
+		# Make predictions
 		y_preds = rfc.predict_proba(X)
 		# Retrieve probabilities of default from nested arrays returned by predictor
 		proba_defaults = []
