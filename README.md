@@ -36,7 +36,7 @@ The machine learning model is a Random Forest Classifier trained on all Lending 
 
 ![Classifier model parameters](http://images.codyhatch.com/github/rfc-model.png)
 
-Below are the confusion matrix, accuracy, AOC, precision, and recall scores for the model:
+Below are the confusion matrix, accuracy, AUC, precision, and recall scores for the model:
 
 ![Classifier model scoring](http://images.codyhatch.com/github/rfc-scoring.png)
 
