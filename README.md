@@ -2,21 +2,21 @@
 
 This is an API that provides a probability of default when presented a loan from Lending Club. The API is written in Flask and it utilizes a scikit-learn machine learning model.
 
-##Prerequisites
+## Prerequisites
 
-* Python 2.7
+* Python 3
 * Flask
 * Flask-RESTful
 * numpy
 * scipy
 * pandas
-* scikit-learn (0.17.1) - pickled model may be version dependent
+* scikit-learn (0.19.0) - pickled model may be version dependent
 
-##Installation
+## Installation
 
 Installation is completely up to you but it expects the typical Flask environment with the two pickled scikit-learn models in the same directory as the Flask app (this can be changed by modifying the joblib path within the app).
 
-##Usage
+## Usage
 
 The API expects a JSON file conforming to the current format from Lending Club. There is an example JSON file called `loanlist-example.json` showing the format the model expects.
 
@@ -30,7 +30,7 @@ To use the API, POST a JSON file matching the format of the example file provide
 
 The API will then load the loans into a Pandas DataFrame, make some modifications, and then run them through the Random Forest Classifier model. It then will add another column to the DataFrame for the predicted probability of default/charge-off. Finally, the API will then return JSON output of the memberId and probability of default for each loan that was input.
 
-##Machine Learning Model
+## Machine Learning Model
 
 The machine learning model is a Random Forest Classifier trained on all Lending Club loans from 2007-2015. It has the following parameters:
 
@@ -50,14 +50,14 @@ You can read more about a confusion matrix on [Wikipedia](https://en.wikipedia.o
 
 The two models used in the API are the following:
 
-####Label Encoder
+#### Label Encoder
 
 Used for both the "term" and "grade" columns/features to encode them into labels. This, rather than one-hot encoding, was used due to the simplicity of the features and in an attempt to keep the feature size to a minimum (one of my goals was to enable this to run on a Raspberry Pi). It is important that this label encoder be loaded so that labels for new loans are consistent with those of the training set.
 
-####Random Forest Classifier
+#### Random Forest Classifier
 
 This model is a random forest classifier with 150 trees. It does the predicting and actually returns an array consisting of the probability the loan will not default and the probability it will. The API is only returning the probability of default, so the second field in the NumPy array.
 
-###Performance
+### Performance
 
 The classifier is pretty quick and should work just fine on even a Raspberry Pi.
