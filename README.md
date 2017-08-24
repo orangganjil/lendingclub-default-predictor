@@ -32,7 +32,7 @@ The API will then load the loans into a Pandas DataFrame, make some modification
 
 ## Machine Learning Model
 
-The machine learning model is a Random Forest Classifier trained on all Lending Club loans from 2007-2015. It has the following parameters:
+The machine learning model is a Random Forest Classifier trained on all Lending Club loans from 2007 through the first half of 2017. It has the following parameters:
 
 ![Classifier model parameters](http://images.codyhatch.com/github/rfc-model.png)
 
