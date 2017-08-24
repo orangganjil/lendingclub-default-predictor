@@ -1,4 +1,4 @@
-#Lending Club Predictor Supporting Files
+# Lending Club Predictor Supporting Files
 
 These are some supporting, non-essential files I am including for documentation purposes. These files are the script I used to clean and prepare the data from LendingClub, as well as the script used to build the model for use in the predictor.
 
