@@ -56,7 +56,7 @@ Used for both the "term" and "grade" columns/features to encode them into labels
 
 #### Random Forest Classifier
 
-This model is a random forest classifier with 150 trees. It does the predicting and actually returns an array consisting of the probability the loan will not default and the probability it will. The API is only returning the probability of default, so the second field in the NumPy array.
+This model is a random forest classifier with 100 trees. It does the predicting and actually returns an array consisting of the probability the loan will not default and the probability it will. The API is only returning the probability of default, so the second field in the NumPy array.
 
 ### Performance
 
