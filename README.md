@@ -34,19 +34,34 @@ The API will then load the loans into a Pandas DataFrame, make some modification
 
 The machine learning model is a Random Forest Classifier trained on all Lending Club loans from 2007 through the first half of 2017. It has the following parameters:
 
-![Classifier model parameters](images/rfc-model.png)
+```
+RandomForestClassifier(bootstrap=True, class_weight='balanced',
+            criterion='gini', max_depth=None, max_features='auto',
+            max_leaf_nodes=None, min_impurity_split=1e-07,
+            min_samples_leaf=5, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=3,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+```
 
-Below are the confusion matrix, accuracy, AUC, precision, and recall scores for the model:
+Below is the confusion matrix followed by the accuracy, AUC, precision, and recall scores for the model:
 
-![Classifier model scoring](images/rfc-scoring.png)
+| True Positive <br>False Positive | False Negative <br>True Negative |
+|:--------------------------------:|:---------------------------------|
+| 74,319 | 4,546 |
+| 1,870 | 16,393 |
 
-For those who may not know, the confusion matrix shows the table of the following:
+```
+Accuracy: 0.933942838316
+Error: 0.0660571616836
+AUC: 0.919982188297
+Precision: 0.782893165863
+Recall: 0.897607183924
+```
 
-True positives | False negatives
-----------------|----------------
-False positives  | True negatives
+If you are unfamiliar with a confusion matrix, in a binary decision such as whether an account is likely to default, the matrix lists in the first column the number of true positives over false positives. The second column lists the number of false negatives over true negatives. Ideally, one would like the numbers to be greatest going diagonally from top-left to bottom-right, with zeros in the other two cells.
 
-You can read more about a confusion matrix on [Wikipedia](https://en.wikipedia.org/wiki/Confusion_matrix)
+You can read more about a confusion matrix on [Wikipedia](https://en.wikipedia.org/wiki/Confusion_matrix).
 
 The two models used in the API are the following:
 
@@ -56,7 +71,7 @@ Used for both the "term" and "grade" columns/features to encode them into labels
 
 #### Random Forest Classifier
 
-This model is a random forest classifier with 100 trees. It does the predicting and actually returns an array consisting of the probability the loan will not default and the probability it will. The API is only returning the probability of default, so the second field in the NumPy array.
+This model is a random forest classifier with 100 trees. It does the predicting, returning an array consisting of the probability a loan will not default along with the probability it will. The API is only returning the probability of default - the second field returned by the model.
 
 ### Performance
 
